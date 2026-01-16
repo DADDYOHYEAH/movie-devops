@@ -1,0 +1,2052 @@
+/* ===== DEVOPS FLIX - STREAMING PLATFORM STYLES ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --bg-primary: #000000;
+    --bg-secondary: #0a0a0a;
+    --bg-card: #141414;
+    --text-primary: #ffffff;
+    --text-secondary: #999999;
+    --accent-red: #e50914;
+    --accent-red-hover: #f40612;
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --border-radius: 4px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Lexend', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===== NETFLIX INTRO ANIMATION ===== */
+/* Merged Netflix Intro CSS */
+#intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    overflow: hidden;
+}
+
+#intro.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#intro netflixintro {
+    display: block;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    animation-name: zoom-in;
+    animation-delay: 0.5s;
+    animation-duration: 3.5s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    background-size: 4000px;
+    background-position: -1950px 0;
+}
+
+#intro netflixintro::before {
+    content: "";
+    position: absolute;
+    display: block;
+    background-color: #000000;
+    width: 150%;
+    height: 30%;
+    left: -25%;
+    bottom: -27%;
+    border-radius: 50%;
+    z-index: 5;
+    transform-origin: left center;
+    background-size: 4000px;
+    background-position: -1950px 0;
+}
+
+#intro netflixintro[letter=N] {
+    transform-origin: 30% center;
+}
+
+#intro netflixintro[letter=N] .helper-1 {
+    width: 19.5%;
+    height: 100%;
+    background-color: rgba(228, 9, 19, 0.5);
+    left: 22.4%;
+    top: 0;
+    transform: rotate(180deg);
+    animation-name: fading-lumieres-box;
+    animation-duration: 2s;
+    animation-delay: 0.6s;
+    animation-fill-mode: forwards;
+}
+
+#intro netflixintro[letter=N] .helper-1 .effect-brush {
+    animation-name: brush-moving;
+    animation-duration: 2.5s;
+    animation-fill-mode: forwards;
+    animation-delay: 1.2s;
+}
+
+#intro netflixintro[letter=N] .helper-1 .effect-brush [class*=fur-] {
+    bottom: 0;
+    height: 40%;
+}
+
+#intro netflixintro[letter=N] .helper-3 {
+    width: 19%;
+    height: 150%;
+    left: 40.5%;
+    top: -25%;
+    transform: rotate(-19.5deg);
+    box-shadow: 0px 0px 35px -12px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+#intro netflixintro[letter=N] .helper-3 .effect-brush {
+    animation-name: brush-moving;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.8s;
+}
+
+#intro netflixintro[letter=N] .helper-2 {
+    width: 19.5%;
+    height: 100%;
+    left: 57.8%;
+    top: 0;
+    transform: rotate(180deg);
+    overflow: hidden;
+}
+
+#intro netflixintro[letter=N] .helper-2 .effect-brush {
+    animation-name: brush-moving;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+}
+
+#intro netflixintro [class*=helper-] {
+    position: absolute;
+}
+
+#intro netflixintro [class*=helper-] .effect-brush {
+    position: absolute;
+    width: 100%;
+    height: 300%;
+    top: 0;
+    overflow: hidden;
+}
+
+#intro netflixintro [class*=helper-] .effect-brush::before {
+    display: block;
+    content: "";
+    position: absolute;
+    background-color: #e40913;
+    width: 100%;
+    height: 70%;
+    box-shadow: 0px 0px 29px 24px #e40913;
+}
+
+#intro netflixintro [class*=helper-] .effect-brush [class*=fur-] {
+    display: block;
+    position: absolute;
+    bottom: 10%;
+    height: 30%;
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-1 {
+    left: 0%;
+    width: 3.8%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 15%, rgba(0, 0, 0, 0) 81%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-2 {
+    left: 3.8%;
+    width: 2.8%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 10%, rgba(0, 0, 0, 0) 62%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-3 {
+    left: 6.6%;
+    width: 4.8%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 37%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-4 {
+    left: 11.4%;
+    width: 4%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 23%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-5 {
+    left: 15.4%;
+    width: 4%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 15%, rgba(0, 0, 0, 0) 86%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-6 {
+    left: 19.4%;
+    width: 2.5%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 27%, rgba(0, 0, 0, 0) 89%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-7 {
+    left: 21.9%;
+    width: 4%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 20%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-8 {
+    left: 25.9%;
+    width: 2%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 30%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-9 {
+    left: 27.9%;
+    width: 4%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 35%, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-10 {
+    left: 31.9%;
+    width: 3.5%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 39%, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-11 {
+    left: 35.4%;
+    width: 2%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 34%, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-12 {
+    left: 37.4%;
+    width: 2.6%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 22%, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-13 {
+    left: 40%;
+    width: 6%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 47%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-14 {
+    left: 46%;
+    width: 2%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 36%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-15 {
+    left: 48%;
+    width: 5.5%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 29%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-16 {
+    left: 53.5%;
+    width: 3%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 39%, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-17 {
+    left: 56.5%;
+    width: 4.1%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 45%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-18 {
+    left: 60.6%;
+    width: 2.4%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 34%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-19 {
+    left: 63%;
+    width: 4%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 47%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-20 {
+    left: 67%;
+    width: 1.5%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 27%, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-21 {
+    left: 68.5%;
+    width: 2.8%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 37%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-22 {
+    left: 71.3%;
+    width: 2.3%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 9%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-23 {
+    left: 73.6%;
+    width: 2.2%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 28%, rgba(0, 0, 0, 0) 92%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-24 {
+    left: 75.8%;
+    width: 1%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 37%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-25 {
+    left: 76.8%;
+    width: 2.1%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 28%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-26 {
+    left: 78.9%;
+    width: 4.1%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 34%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-27 {
+    left: 83%;
+    width: 2.5%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 21%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-28 {
+    left: 85.5%;
+    width: 4.5%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 39%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-29 {
+    left: 90%;
+    width: 2.8%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 30%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-30 {
+    left: 92.8%;
+    width: 3.5%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 19%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-brush .fur-31 {
+    left: 96.3%;
+    width: 3.7%;
+    background: linear-gradient(to bottom, #e40913 0%, #e40913 37%, rgba(0, 0, 0, 0) 100%);
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation-name: showing-lumieres;
+    animation-duration: 2s;
+    animation-delay: 1.6s;
+    animation-fill-mode: forwards;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres [class*=lamp-] {
+    position: absolute;
+    display: block;
+    height: 100%;
+    box-shadow: 0px 0px 10px 0px rgba(228, 9, 19, 0.75);
+    background: var(--color);
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres [class*=lamp-]::before {
+    position: absolute;
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--color);
+    box-shadow: 0px 0px 10px 0px rgba(228, 9, 19, 0.75);
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-1 {
+    --color: #ff0100;
+    left: 0.7%;
+    width: 1%;
+    animation-delay: 1.47s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-1::before {
+    left: 189%;
+    animation-delay: 1.28s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-2 {
+    --color: #ffde01;
+    left: 2.2%;
+    width: 1.4%;
+    animation-delay: 1.49s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-2::before {
+    left: 154%;
+    animation-delay: 0.96s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-3 {
+    --color: #ff00cc;
+    left: 5.8%;
+    width: 2.1%;
+    animation-delay: 0.49s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-3::before {
+    left: 96%;
+    animation-delay: 1.59s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-4 {
+    --color: #04fd8f;
+    left: 10.1%;
+    width: 2%;
+    animation-delay: 0.38s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-4::before {
+    left: 23%;
+    animation-delay: 0.42s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-5 {
+    --color: #ff0100;
+    left: 12.9%;
+    width: 1.4%;
+    animation-delay: 0.45s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-5::before {
+    left: 192%;
+    animation-delay: 0.22s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-6 {
+    --color: #ff9600;
+    left: 15.3%;
+    width: 2.8%;
+    animation-delay: 0.59s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-6::before {
+    left: 114%;
+    animation-delay: 1.93s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-7 {
+    --color: #0084ff;
+    left: 21.2%;
+    width: 2.5%;
+    animation-delay: 1s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-7::before {
+    left: 163%;
+    animation-delay: 0.89s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-8 {
+    --color: #f84006;
+    left: 25%;
+    width: 2.5%;
+    animation-delay: 1.47s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-8::before {
+    left: 113%;
+    animation-delay: 0.3s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-9 {
+    --color: #ffc601;
+    left: 30.5%;
+    width: 3%;
+    animation-delay: 1.25s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-9::before {
+    left: 97%;
+    animation-delay: 1.51s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-10 {
+    --color: #ff4800;
+    left: 36.3%;
+    width: 3%;
+    animation-delay: 0.74s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-10::before {
+    left: 67%;
+    animation-delay: 1.62s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-11 {
+    --color: #fd0100;
+    left: 41%;
+    width: 2.2%;
+    animation-delay: 0.48s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-11::before {
+    left: 10%;
+    animation-delay: 0.74s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-12 {
+    --color: #01ffff;
+    left: 44.2%;
+    width: 2.6%;
+    animation-delay: 1.15s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-12::before {
+    left: 188%;
+    animation-delay: 0.6s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-13 {
+    --color: #ffc601;
+    left: 51.7%;
+    width: 0.5%;
+    animation-delay: 0.18s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-13::before {
+    left: 56%;
+    animation-delay: 0.25s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-14 {
+    --color: #ffc601;
+    left: 52.1%;
+    width: 1.8%;
+    animation-delay: 0.77s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-14::before {
+    left: 31%;
+    animation-delay: 1.61s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-15 {
+    --color: #0078fe;
+    left: 53.8%;
+    width: 2.3%;
+    animation-delay: 0.32s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-15::before {
+    left: 194%;
+    animation-delay: 1.97s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-16 {
+    --color: #0080ff;
+    left: 57.2%;
+    width: 2%;
+    animation-delay: 0.41s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-16::before {
+    left: 102%;
+    animation-delay: 0.69s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-17 {
+    --color: #ffae01;
+    left: 62.3%;
+    width: 2.9%;
+    animation-delay: 0.08s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-17::before {
+    left: 143%;
+    animation-delay: 0.24s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-18 {
+    --color: #ff00bf;
+    left: 65.8%;
+    width: 1.7%;
+    animation-delay: 1.96s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-18::before {
+    left: 186%;
+    animation-delay: 0.46s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-19 {
+    --color: #a601f4;
+    left: 72.8%;
+    width: 0.8%;
+    animation-delay: 1.11s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-19::before {
+    left: 170%;
+    animation-delay: 0.95s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-20 {
+    --color: #f30b34;
+    left: 74.3%;
+    width: 2%;
+    animation-delay: 1.9s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-20::before {
+    left: 46%;
+    animation-delay: 0.4s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-21 {
+    --color: #ff00bf;
+    left: 79.8%;
+    width: 2%;
+    animation-delay: 1.55s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-21::before {
+    left: 148%;
+    animation-delay: 1.37s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-22 {
+    --color: #04fd8f;
+    left: 78.2%;
+    width: 2%;
+    animation-delay: 1.66s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-22::before {
+    left: 154%;
+    animation-delay: 0.35s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-23 {
+    --color: #01ffff;
+    left: 78.5%;
+    width: 2%;
+    animation-delay: 1.95s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-23::before {
+    left: 54%;
+    animation-delay: 0.53s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-24 {
+    --color: #a201ff;
+    left: 85.3%;
+    width: 1.1%;
+    animation-delay: 0.71s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-24::before {
+    left: 195%;
+    animation-delay: 1.74s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-25 {
+    --color: #ec0014;
+    left: 86.9%;
+    width: 1.1%;
+    animation-delay: 1.6s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-25::before {
+    left: 73%;
+    animation-delay: 1.88s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-26 {
+    --color: #0078fe;
+    left: 88.8%;
+    width: 2%;
+    animation-delay: 0.3s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-26::before {
+    left: 91%;
+    animation-delay: 1.15s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-27 {
+    --color: #ff0036;
+    left: 92.4%;
+    width: 2.4%;
+    animation-delay: 1.5s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-27::before {
+    left: 5%;
+    animation-delay: 1.45s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-28 {
+    --color: #06f98c;
+    left: 96.2%;
+    width: 2.1%;
+    animation-delay: 0.83s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-28::before {
+    left: 140%;
+    animation-delay: 1.08s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-1,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-3,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-5,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-7,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-9,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-11,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-13,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-15,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-17,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-19,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-21,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-23,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-25,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-27 {
+    animation-name: lumieres-moving-left;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-1::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-3::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-5::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-7::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-9::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-11::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-13::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-15::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-17::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-19::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-21::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-23::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-25::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-27::before {
+    animation-name: lumieres-moving-left;
+    animation-duration: 5.5s;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-2,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-4,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-6,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-8,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-10,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-12,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-14,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-16,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-18,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-20,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-22,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-24,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-26,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-28 {
+    animation-name: lumieres-moving-right;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-2::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-4::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-6::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-8::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-10::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-12::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-14::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-16::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-18::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-20::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-22::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-24::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-26::before,
+#intro netflixintro [class*=helper-] .effect-lumieres .lamp-28::before {
+    animation-name: lumieres-moving-right;
+    animation-duration: 5.5s;
+}
+
+@keyframes brush-moving {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes fading-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes lumieres-moving-right {
+    0% {
+        transform: translate(0);
+    }
+
+    40% {
+        transform: translate(-10px) scaleX(1);
+    }
+
+    50% {
+        transform: translate(-60px);
+    }
+
+    100% {
+        transform: translate(-120px) scaleX(3);
+    }
+}
+
+@keyframes lumieres-moving-left {
+    0% {
+        transform: translate(0);
+    }
+
+    40% {
+        transform: translate(10px) scaleX(1);
+    }
+
+    50% {
+        transform: translate(60px);
+    }
+
+    100% {
+        transform: translate(120px) scaleX(3);
+    }
+}
+
+@keyframes zoom-in {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(15);
+    }
+}
+
+@keyframes showing-lumieres {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fading-lumieres-box {
+    0% {
+        background-color: rgba(228, 9, 19, 0.5);
+    }
+
+    100% {
+        background-color: rgba(228, 9, 19, 0);
+    }
+}
+
+/* ===== NAVIGATION ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    z-index: 1000;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+    transition: background var(--transition-medium);
+}
+
+.navbar.scrolled {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-red);
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--text-primary);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: 0.9rem;
+    transition: color var(--transition-fast);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--text-primary);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Search Icon Button */
+.search-icon-btn {
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s;
+    text-decoration: none;
+}
+
+.search-icon-btn:hover,
+.search-icon-btn.active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Dedicated Search Page */
+.search-page {
+    min-height: 100vh;
+    padding: 120px 40px 60px;
+}
+
+.search-page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.search-page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f, #c06c84);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.search-page-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.search-page-input-wrapper {
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.search-page-input-container {
+    position: relative;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s;
+}
+
+.search-page-input-container:focus-within {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--accent-red);
+}
+
+.search-input-icon {
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.search-page-input-container input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    width: 100%;
+    outline: none;
+}
+
+.search-page-input-container input::placeholder {
+    color: var(--text-secondary);
+}
+
+.search-page-results {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.search-section {
+    margin-bottom: 40px;
+}
+
+.search-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(229, 9, 20, 0.3);
+}
+
+.search-section-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.search-section-count {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.search-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.search-result-card {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.search-result-card:hover {
+    transform: scale(1.05);
+}
+
+.search-result-card-poster {
+    width: 100%;
+    aspect-ratio: 2/3;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background: var(--bg-card);
+    margin-bottom: 10px;
+}
+
+.search-result-card-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.search-result-card-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.search-result-card-meta {
+    display: flex;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.no-results {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.no-results p {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.no-results span {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+/* ===== HERO SECTION (Auto-Rotating) ===== */
+.hero {
+    width: 100%;
+    height: 85vh;
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center right;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero-slide::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to top, var(--bg-primary), transparent);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 60px;
+    max-width: 700px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-meta {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.hero-meta span {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.rating {
+    color: #ffd700;
+}
+
+.hero-overview {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 25px;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+/* Hero Navigation Dots */
+.hero-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.hero-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.hero-dot:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.hero-dot.active {
+    background: var(--accent-red);
+    width: 25px;
+    border-radius: 5px;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 0;
+    margin-top: -100px;
+}
+
+.movie-section {
+    margin-bottom: 45px;
+    padding: 0 40px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.section-title.red {
+    color: var(--accent-red);
+}
+
+.view-all {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    transition: color 0.2s;
+}
+
+.view-all:hover {
+    color: var(--text-primary);
+}
+
+/* TOP 10 Section */
+.top10-carousel {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0 20px;
+    scrollbar-width: none;
+}
+
+.top10-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.top10-card {
+    position: relative;
+    flex: 0 0 auto;
+    width: 140px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.top10-card:hover {
+    transform: scale(1.05);
+}
+
+.top10-number {
+    position: absolute;
+    bottom: -15px;
+    left: -15px;
+    font-size: 9rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    text-shadow: -2px -2px 0 var(--accent-red);
+    line-height: 1;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.top10-poster {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 2/3;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background: var(--bg-card);
+}
+
+.top10-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Carousel */
+.carousel-container {
+    position: relative;
+}
+
+.movie-carousel {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0 20px;
+    scrollbar-width: none;
+}
+
+.movie-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+/* Movie Cards */
+.movie-card {
+    flex: 0 0 auto;
+    width: 160px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.movie-card:hover {
+    transform: scale(1.15);
+    z-index: 10;
+}
+
+.movie-poster {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2/3;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background: var(--bg-card);
+}
+
+.movie-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-poster {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+/* Movie Overlay on Hover */
+.movie-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: flex-end;
+}
+
+.movie-card:hover .movie-overlay {
+    opacity: 1;
+}
+
+.overlay-content {
+    padding: 12px;
+    width: 100%;
+}
+
+.overlay-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.overlay-meta {
+    display: flex;
+    gap: 8px;
+    font-size: 0.7rem;
+    margin-bottom: 8px;
+}
+
+.overlay-rating {
+    color: #ffd700;
+}
+
+.overlay-year {
+    color: var(--text-secondary);
+}
+
+.overlay-overview {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    line-height: 1.3;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.overlay-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.overlay-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.play-btn {
+    background: white;
+    color: black;
+}
+
+.add-btn,
+.info-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+}
+
+.add-btn:hover,
+.info-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.remove-btn {
+    background: var(--accent-red);
+    color: white;
+}
+
+.remove-btn:hover {
+    background: var(--accent-red-hover);
+}
+
+/* Watchlist */
+.watchlist-section {
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.02), transparent);
+    margin: 0 -40px;
+    padding: 30px 40px;
+}
+
+.watchlist-container {
+    min-height: 180px;
+}
+
+.empty-watchlist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px dashed rgba(255, 255, 255, 0.08);
+    border-radius: var(--border-radius);
+}
+
+.empty-watchlist p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.empty-watchlist span {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* ===== MOVIE MODAL ===== */
+.movie-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 2000;
+    display: none;
+    overflow-y: auto;
+    padding: 40px 20px;
+}
+
+.movie-modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 850px;
+    background: #0f0f0f;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 40px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #0f0f0f;
+    color: white;
+    font-size: 1.3rem;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    background: #1f1f1f;
+}
+
+.modal-backdrop {
+    width: 100%;
+    height: 380px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.modal-backdrop::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 180px;
+    background: linear-gradient(to top, #0f0f0f, transparent);
+}
+
+.modal-body {
+    padding: 0 40px 40px;
+    margin-top: -90px;
+    position: relative;
+    z-index: 1;
+}
+
+.modal-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.modal-tagline {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+}
+
+.modal-info {
+    margin-bottom: 18px;
+}
+
+.modal-meta {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+.modal-rating {
+    color: #46d369;
+    font-weight: 600;
+}
+
+.modal-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.genre-tag {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 4px 11px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
+
+.modal-overview {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 22px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+}
+
+.btn-play {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+}
+
+.btn-play:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.btn-add {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-primary);
+}
+
+.btn-add:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.modal-credits {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+.credits-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 8px;
+    font-weight: 600;
+}
+
+.cast-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.cast-item {
+    flex: 0 0 70px;
+    text-align: center;
+}
+
+.cast-photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #222;
+    margin-bottom: 6px;
+}
+
+.cast-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-photo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+.cast-name {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.cast-character {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+}
+
+.crew-list p {
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+}
+
+.crew-list strong {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.no-data {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* ===== TOAST ===== */
+.toast {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    padding: 14px 24px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    transform: translateX(150%);
+    transition: transform 0.3s;
+    z-index: 10000;
+    font-size: 0.9rem;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast.success {
+    border-left: 3px solid #2ed573;
+}
+
+.toast.error {
+    border-left: 3px solid var(--accent-red);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: var(--bg-secondary);
+    padding: 50px 40px;
+    margin-top: 40px;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.footer p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .nav-links {
+        display: none;
+    }
+
+    .navbar,
+    .movie-section {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .movie-card,
+    .top10-card {
+        width: 140px;
+    }
+
+    .modal-credits {
+        grid-template-columns: 1fr;
+    }
+
+    .search-dropdown {
+        right: 25px;
+        width: 340px;
+    }
+
+    .watchlist-section {
+        margin: 0 -25px;
+        padding: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .movie-card,
+    .top10-card {
+        width: 120px;
+    }
+
+    .movie-card:hover,
+    .top10-card:hover {
+        transform: scale(1.08);
+    }
+
+    .search-dropdown {
+        right: 20px;
+        left: 20px;
+        width: auto;
+    }
+
+    .modal-body {
+        padding: 0 20px 30px;
+    }
+
+    .top10-number {
+        font-size: 6rem;
+    }
+}
+
+/* ===== TOP 10 CONTENT TODAY SECTION ===== */
+.top10-section {
+    padding: 40px;
+}
+
+.top10-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.top10-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--accent-red);
+    letter-spacing: 3px;
+}
+
+.top10-subtitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 4px;
+    line-height: 1.4;
+}
+
+.top10-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Arrow Buttons */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.carousel-arrow:hover {
+    background: #000;
+    color: #fff;
+}
+
+.carousel-arrow-left {
+    left: 0;
+}
+
+.carousel-arrow-right {
+    right: 0;
+}
+
+.top10-carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 20px 60px 40px;
+    scrollbar-width: none;
+    flex: 1;
+}
+
+.top10-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.top10-card {
+    position: relative;
+    flex: 0 0 calc(20% - 16px);
+    min-width: 220px;
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+    transition: transform 0.3s;
+    padding-left: 50px;
+}
+
+.top10-card:hover {
+    transform: scale(1.05);
+}
+
+.top10-number {
+    position: absolute;
+    left: -10px;
+    bottom: 0;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    font-size: 10rem;
+    font-weight: 900;
+    background: linear-gradient(to bottom, #b20710, #500000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 0.85;
+    z-index: 0;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+/* Hover effect for number */
+.top10-card:hover .top10-number {
+    filter: brightness(1.3);
+}
+
+.top10-poster {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 2/3;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background: var(--bg-card);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+.top10-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 992px) {
+    .top10-title {
+        font-size: 2.5rem;
+    }
+
+    .top10-card {
+        padding-left: 40px;
+    }
+
+    .top10-number {
+        font-size: 8rem;
+        left: -5px;
+    }
+
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .top10-title {
+        font-size: 2rem;
+    }
+
+    .top10-card {
+        padding-left: 30px;
+    }
+
+    .top10-number {
+        font-size: 6rem;
+        left: -5px;
+    }
+
+    .top10-carousel {
+        padding: 20px 40px 40px;
+    }
+}

@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="DevOps Flix - Your ultimate movie streaming experience with trending and top-rated films">
+    <title>DevOps Flix | Stream Movies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Intro Animation Overlay - Hides after 4 seconds -->
+    <div id="intro">
+        <!-- Netflix-style N letter animation -->
+        <netflixintro letter="N">
+            <div class="helper-1">
+                <div class="effect-brush">
+                    <span class="fur-31"></span>
+                    <span class="fur-30"></span>
+                    <span class="fur-29"></span>
+                    <span class="fur-28"></span>
+                    <span class="fur-27"></span>
+                    <span class="fur-26"></span>
+                    <span class="fur-25"></span>
+                    <span class="fur-24"></span>
+                    <span class="fur-23"></span>
+                    <span class="fur-22"></span>
+                    <span class="fur-21"></span>
+                    <span class="fur-20"></span>
+                    <span class="fur-19"></span>
+                    <span class="fur-18"></span>
+                    <span class="fur-17"></span>
+                    <span class="fur-16"></span>
+                    <span class="fur-15"></span>
+                    <span class="fur-14"></span>
+                    <span class="fur-13"></span>
+                    <span class="fur-12"></span>
+                    <span class="fur-11"></span>
+                    <span class="fur-10"></span>
+                    <span class="fur-9"></span>
+                    <span class="fur-8"></span>
+                    <span class="fur-7"></span>
+                    <span class="fur-6"></span>
+                    <span class="fur-5"></span>
+                    <span class="fur-4"></span>
+                    <span class="fur-3"></span>
+                    <span class="fur-2"></span>
+                    <span class="fur-1"></span>
+                </div>
+                <div class="effect-lumieres">
+                    <span class="lamp-1"></span>
+                    <span class="lamp-2"></span>
+                    <span class="lamp-3"></span>
+                    <span class="lamp-4"></span>
+                    <span class="lamp-5"></span>
+                    <span class="lamp-6"></span>
+                    <span class="lamp-7"></span>
+                    <span class="lamp-8"></span>
+                    <span class="lamp-9"></span>
+                    <span class="lamp-10"></span>
+                    <span class="lamp-11"></span>
+                    <span class="lamp-12"></span>
+                    <span class="lamp-13"></span>
+                    <span class="lamp-14"></span>
+                    <span class="lamp-15"></span>
+                    <span class="lamp-16"></span>
+                    <span class="lamp-17"></span>
+                    <span class="lamp-18"></span>
+                    <span class="lamp-19"></span>
+                    <span class="lamp-20"></span>
+                    <span class="lamp-21"></span>
+                    <span class="lamp-22"></span>
+                    <span class="lamp-23"></span>
+                    <span class="lamp-24"></span>
+                    <span class="lamp-25"></span>
+                    <span class="lamp-26"></span>
+                    <span class="lamp-27"></span>
+                    <span class="lamp-28"></span>
+                </div>
+            </div>
+            <div class="helper-2">
+                <div class="effect-brush">
+                    <span class="fur-31"></span>
+                    <span class="fur-30"></span>
+                    <span class="fur-29"></span>
+                    <span class="fur-28"></span>
+                    <span class="fur-27"></span>
+                    <span class="fur-26"></span>
+                    <span class="fur-25"></span>
+                    <span class="fur-24"></span>
+                    <span class="fur-23"></span>
+                    <span class="fur-22"></span>
+                    <span class="fur-21"></span>
+                    <span class="fur-20"></span>
+                    <span class="fur-19"></span>
+                    <span class="fur-18"></span>
+                    <span class="fur-17"></span>
+                    <span class="fur-16"></span>
+                    <span class="fur-15"></span>
+                    <span class="fur-14"></span>
+                    <span class="fur-13"></span>
+                    <span class="fur-12"></span>
+                    <span class="fur-11"></span>
+                    <span class="fur-10"></span>
+                    <span class="fur-9"></span>
+                    <span class="fur-8"></span>
+                    <span class="fur-7"></span>
+                    <span class="fur-6"></span>
+                    <span class="fur-5"></span>
+                    <span class="fur-4"></span>
+                    <span class="fur-3"></span>
+                    <span class="fur-2"></span>
+                    <span class="fur-1"></span>
+                </div>
+            </div>
+            <div class="helper-3">
+                <div class="effect-brush">
+                    <span class="fur-31"></span>
+                    <span class="fur-30"></span>
+                    <span class="fur-29"></span>
+                    <span class="fur-28"></span>
+                    <span class="fur-27"></span>
+                    <span class="fur-26"></span>
+                    <span class="fur-25"></span>
+                    <span class="fur-24"></span>
+                    <span class="fur-23"></span>
+                    <span class="fur-22"></span>
+                    <span class="fur-21"></span>
+                    <span class="fur-20"></span>
+                    <span class="fur-19"></span>
+                    <span class="fur-18"></span>
+                    <span class="fur-17"></span>
+                    <span class="fur-16"></span>
+                    <span class="fur-15"></span>
+                    <span class="fur-14"></span>
+                    <span class="fur-13"></span>
+                    <span class="fur-12"></span>
+                    <span class="fur-11"></span>
+                    <span class="fur-10"></span>
+                    <span class="fur-9"></span>
+                    <span class="fur-8"></span>
+                    <span class="fur-7"></span>
+                    <span class="fur-6"></span>
+                    <span class="fur-5"></span>
+                    <span class="fur-4"></span>
+                    <span class="fur-3"></span>
+                    <span class="fur-2"></span>
+                    <span class="fur-1"></span>
+                </div>
+            </div>
+            <div class="helper-4">
+                <div class="effect-brush">
+                    <span class="fur-31"></span>
+                    <span class="fur-30"></span>
+                    <span class="fur-29"></span>
+                    <span class="fur-28"></span>
+                    <span class="fur-27"></span>
+                    <span class="fur-26"></span>
+                    <span class="fur-25"></span>
+                    <span class="fur-24"></span>
+                    <span class="fur-23"></span>
+                    <span class="fur-22"></span>
+                    <span class="fur-21"></span>
+                    <span class="fur-20"></span>
+                    <span class="fur-19"></span>
+                    <span class="fur-18"></span>
+                    <span class="fur-17"></span>
+                    <span class="fur-16"></span>
+                    <span class="fur-15"></span>
+                    <span class="fur-14"></span>
+                    <span class="fur-13"></span>
+                    <span class="fur-12"></span>
+                    <span class="fur-11"></span>
+                    <span class="fur-10"></span>
+                    <span class="fur-9"></span>
+                    <span class="fur-8"></span>
+                    <span class="fur-7"></span>
+                    <span class="fur-6"></span>
+                    <span class="fur-5"></span>
+                    <span class="fur-4"></span>
+                    <span class="fur-3"></span>
+                    <span class="fur-2"></span>
+                    <span class="fur-1"></span>
+                </div>
+            </div>
+        </netflixintro>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="/" class="logo">DEVOPS<span>FLIX</span></a>
+            <ul class="nav-links">
+                <li><a href="#trending" class="active">Home</a></li>
+                <li><a href="#trending">Trending</a></li>
+                <li><a href="#top-rated">Top Rated</a></li>
+                <li><a href="#watchlist">My List</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <a href="/search" class="search-icon-btn">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path
+                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Movie Details Modal -->
+    <div id="movieModal" class="movie-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-backdrop" id="modalBackdrop"></div>
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h1 id="modalTitle"></h1>
+                    <p id="modalTagline" class="modal-tagline"></p>
+                </div>
+                <div class="modal-info">
+                    <div class="modal-meta">
+                        <span class="modal-rating" id="modalRating"></span>
+                        <span class="modal-year" id="modalYear"></span>
+                        <span class="modal-runtime" id="modalRuntime"></span>
+                    </div>
+                    <div class="modal-genres" id="modalGenres"></div>
+                </div>
+                <p class="modal-overview" id="modalOverview"></p>
+
+                <div class="modal-actions">
+                    <button class="btn btn-play">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                        Play
+                    </button>
+                    <button class="btn btn-add" id="modalAddBtn">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        </svg>
+                        My List
+                    </button>
+                </div>
+
+                <div class="modal-credits">
+                    <div class="credits-section">
+                        <h3>Cast</h3>
+                        <div class="cast-grid" id="modalCast"></div>
+                    </div>
+                    <div class="credits-section">
+                        <h3>Crew</h3>
+                        <div class="crew-list" id="modalCrew"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auto-Rotating Hero Banner -->
+    <section class="hero" id="heroSection">
+        {% for movie in trending[:10] %}
+        <div class="hero-slide {% if loop.first %}active{% endif %}" data-index="{{ loop.index0 }}"
+            style="background-image: linear-gradient(to right, rgba(10,10,10,1) 0%, rgba(10,10,10,0.7) 40%, rgba(10,10,10,0.3) 100%), url('{{ image_base }}{{ movie.backdrop_path or movie.poster_path }}');">
+            <div class="hero-content">
+                <h1 class="hero-title">{{ movie.title }}</h1>
+                <div class="hero-meta">
+                    <span class="rating">⭐ {{ "%.1f"|format(movie.vote_average) }}/10</span>
+                    <span class="release-date">📅 {{ movie.release_date[:4] if movie.release_date else 'N/A' }}</span>
+                    <span class="media-type">🎬 {{ movie.media_type|default('Movie')|capitalize }}</span>
+                </div>
+                <p class="hero-overview">{{ movie.overview[:250] }}{% if movie.overview|length > 250 %}...{% endif %}
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-play">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                        Play
+                    </button>
+                    <button class="btn btn-info" onclick="openMovieModal({{ movie.id }})">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                        </svg>
+                        See More
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top 10 Content Today Section (FIRST) -->
+        <section id="top10" class="movie-section top10-section">
+            <div class="top10-header">
+                <h2 class="top10-title">TOP 10</h2>
+                <span class="top10-subtitle">CONTENT<br>TODAY</span>
+            </div>
+            <div class="carousel-container top10-container">
+                <button class="carousel-arrow carousel-arrow-left" id="top10-left" aria-label="Previous">‹</button>
+                <div class="top10-carousel" id="top10-carousel">
+                    {% for movie in trending[:10] %}
+                    <div class="top10-card" onclick="openMovieModal({{ movie.id }})">
+                        <span class="top10-number">{{ loop.index }}</span>
+                        <div class="top10-poster">
+                            {% if movie.poster_path %}
+                            <img src="{{ image_base }}{{ movie.poster_path }}" alt="{{ movie.title }}" loading="lazy">
+                            {% else %}
+                            <div class="no-poster">No Image</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-arrow carousel-arrow-right" id="top10-right" aria-label="Next">›</button>
+            </div>
+        </section>
+
+        <!-- Trending Today Section -->
+        <section id="trending" class="movie-section">
+            <h2 class="section-title">🔥 Trending Today</h2>
+            <div class="carousel-container">
+                <div class="movie-carousel" id="trending-carousel">
+                    {% for movie in trending %}
+                    <div class="movie-card" data-id="{{ movie.id }}" onclick="openMovieModal({{ movie.id }})">
+                        <div class="movie-poster">
+                            {% if movie.poster_path %}
+                            <img src="{{ image_base }}{{ movie.poster_path }}" alt="{{ movie.title }}" loading="lazy">
+                            {% else %}
+                            <div class="no-poster">No Image</div>
+                            {% endif %}
+                            <div class="movie-overlay">
+                                <div class="overlay-content">
+                                    <h4 class="overlay-title">{{ movie.title }}</h4>
+                                    <div class="overlay-meta">
+                                        <span class="overlay-rating">⭐ {{ "%.1f"|format(movie.vote_average) }}</span>
+                                        <span class="overlay-year">{{ movie.release_date[:4] if movie.release_date else
+                                            'N/A' }}</span>
+                                    </div>
+                                    <p class="overlay-overview">{{ movie.overview[:100] }}{% if movie.overview|length >
+                                        100 %}...{% endif %}</p>
+                                    <div class="overlay-buttons">
+                                        <button class="overlay-btn play-btn"
+                                            onclick="event.stopPropagation();">▶</button>
+                                        <button class="overlay-btn add-btn"
+                                            onclick="event.stopPropagation(); addToWatchlist({{ movie.id }}, '{{ movie.title|e }}', '{{ movie.poster_path }}')">+</button>
+                                        <button class="overlay-btn info-btn"
+                                            onclick="event.stopPropagation(); openMovieModal({{ movie.id }});">ⓘ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Top Rated Section -->
+        <section id="top-rated" class="movie-section">
+            <h2 class="section-title">⭐ Top Rated</h2>
+            <div class="carousel-container">
+                <div class="movie-carousel" id="toprated-carousel">
+                    {% for movie in top_rated %}
+                    <div class="movie-card" data-id="{{ movie.id }}" onclick="openMovieModal({{ movie.id }})">
+                        <div class="movie-poster">
+                            {% if movie.poster_path %}
+                            <img src="{{ image_base }}{{ movie.poster_path }}" alt="{{ movie.title }}" loading="lazy">
+                            {% else %}
+                            <div class="no-poster">No Image</div>
+                            {% endif %}
+                            <div class="movie-overlay">
+                                <div class="overlay-content">
+                                    <h4 class="overlay-title">{{ movie.title }}</h4>
+                                    <div class="overlay-meta">
+                                        <span class="overlay-rating">⭐ {{ "%.1f"|format(movie.vote_average) }}</span>
+                                        <span class="overlay-year">{{ movie.release_date[:4] if movie.release_date else
+                                            'N/A' }}</span>
+                                    </div>
+                                    <p class="overlay-overview">{{ movie.overview[:100] }}{% if movie.overview|length >
+                                        100 %}...{% endif %}</p>
+                                    <div class="overlay-buttons">
+                                        <button class="overlay-btn play-btn"
+                                            onclick="event.stopPropagation();">▶</button>
+                                        <button class="overlay-btn add-btn"
+                                            onclick="event.stopPropagation(); addToWatchlist({{ movie.id }}, '{{ movie.title|e }}', '{{ movie.poster_path }}')">+</button>
+                                        <button class="overlay-btn info-btn"
+                                            onclick="event.stopPropagation(); openMovieModal({{ movie.id }});">ⓘ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- My Watchlist Section -->
+        <section id="watchlist" class="movie-section watchlist-section">
+            <h2 class="section-title">📺 My Watchlist</h2>
+            <div class="watchlist-container" id="watchlist-container">
+                {% if watchlist %}
+                <div class="movie-carousel" id="watchlist-carousel">
+                    {% for movie in watchlist %}
+                    <div class="movie-card watchlist-card" data-id="{{ movie.id }}"
+                        onclick="openMovieModal({{ movie.id }})">
+                        <div class="movie-poster">
+                            {% if movie.poster_path %}
+                            <img src="{{ image_base }}{{ movie.poster_path }}" alt="{{ movie.title }}" loading="lazy">
+                            {% else %}
+                            <div class="no-poster">No Image</div>
+                            {% endif %}
+                            <div class="movie-overlay">
+                                <div class="overlay-content">
+                                    <h4 class="overlay-title">{{ movie.title }}</h4>
+                                    <div class="overlay-buttons">
+                                        <button class="overlay-btn play-btn"
+                                            onclick="event.stopPropagation();">▶</button>
+                                        <button class="overlay-btn remove-btn"
+                                            onclick="event.stopPropagation(); removeFromWatchlist({{ movie.id }})">✕</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="empty-watchlist">
+                    <p>Your watchlist is empty</p>
+                    <span>Click the + button on any movie to add it here</span>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-logo">DEVOPS<span>FLIX</span></p>
+            <p>&copy; 2026 DevOps Flix. All rights reserved.</p>
+            <p class="footer-credits">Powered by TMDB API</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        const IMAGE_BASE = '{{ image_base }}';
+
+        // ===== INTRO ANIMATION =====
+        document.addEventListener('DOMContentLoaded', function () {
+            const intro = document.getElementById('intro');
+
+            // Hide intro after 6 seconds
+            setTimeout(() => {
+                intro.classList.add('hidden');
+                setTimeout(() => {
+                    intro.style.display = 'none';
+                }, 500);
+            }, 6000);
+        });
+
+        // ===== AUTO-ROTATING HERO BANNER =====
+        (function () {
+            const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.querySelectorAll('.hero-dot');
+            let currentSlide = 0;
+            let heroInterval;
+            const SLIDE_DURATION = 8000; // 8 seconds
+
+            function showSlide(index) {
+                // Remove active class from all slides and dots
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+
+                // Add active class to current slide and dot
+                if (slides[index]) slides[index].classList.add('active');
+                if (dots[index]) dots[index].classList.add('active');
+
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                const next = (currentSlide + 1) % slides.length;
+                showSlide(next);
+            }
+
+            // Start auto-rotation
+            function startRotation() {
+                heroInterval = setInterval(nextSlide, SLIDE_DURATION);
+            }
+
+            // Click on dots to navigate
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    clearInterval(heroInterval);
+                    showSlide(index);
+                    startRotation();
+                });
+            });
+
+            // Pause on hover (optional - enhances UX)
+            const heroSection = document.getElementById('heroSection');
+            if (heroSection) {
+                heroSection.addEventListener('mouseenter', () => {
+                    clearInterval(heroInterval);
+                });
+                heroSection.addEventListener('mouseleave', () => {
+                    startRotation();
+                });
+            }
+
+            // Initialize
+            if (slides.length > 0) {
+                startRotation();
+            }
+        })();
+
+        // ===== TOP 10 CAROUSEL ARROW NAVIGATION =====
+        (function () {
+            const carousel = document.getElementById('top10-carousel');
+            const leftBtn = document.getElementById('top10-left');
+            const rightBtn = document.getElementById('top10-right');
+
+            if (carousel && leftBtn && rightBtn) {
+                const scrollAmount = 450; // Scroll by roughly 2 cards
+
+                leftBtn.addEventListener('click', () => {
+                    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                });
+
+                rightBtn.addEventListener('click', () => {
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                });
+            }
+        })();
+
+        // ===== TOAST NOTIFICATION =====
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ===== WATCHLIST FUNCTIONS =====
+        function addToWatchlist(id, title, posterPath) {
+            fetch('/watchlist/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: id,
+                    title: title,
+                    poster_path: posterPath
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showToast(`"${title}" added to watchlist!`, 'success');
+                        updateWatchlistUI(data.watchlist);
+                    } else {
+                        showToast(data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    showToast('Error adding to watchlist', 'error');
+                    console.error('Error:', error);
+                });
+        }
+
+        function removeFromWatchlist(id) {
+            fetch('/watchlist/remove', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: id })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showToast('Movie removed from watchlist', 'success');
+                        updateWatchlistUI(data.watchlist);
+                    } else {
+                        showToast(data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    showToast('Error removing from watchlist', 'error');
+                    console.error('Error:', error);
+                });
+        }
+
+        function updateWatchlistUI(watchlist) {
+            const container = document.getElementById('watchlist-container');
+
+            if (watchlist.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-watchlist">
+                        <p>Your watchlist is empty</p>
+                        <span>Click the + button on any movie to add it here</span>
+                    </div>
+                `;
+            } else {
+                let html = '<div class="movie-carousel" id="watchlist-carousel">';
+                watchlist.forEach(movie => {
+                    html += `
+                        <div class="movie-card watchlist-card" data-id="${movie.id}" onclick="openMovieModal(${movie.id})">
+                            <div class="movie-poster">
+                                ${movie.poster_path
+                            ? `<img src="${IMAGE_BASE}${movie.poster_path}" alt="${movie.title}" loading="lazy">`
+                            : '<div class="no-poster">No Image</div>'
+                        }
+                                <div class="movie-overlay">
+                                    <div class="overlay-content">
+                                        <h4 class="overlay-title">${movie.title}</h4>
+                                        <div class="overlay-buttons">
+                                            <button class="overlay-btn play-btn" onclick="event.stopPropagation();">▶</button>
+                                            <button class="overlay-btn remove-btn" onclick="event.stopPropagation(); removeFromWatchlist(${movie.id})">✕</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                container.innerHTML = html;
+            }
+        }
+
+
+        // ===== MOVIE MODAL =====
+        const movieModal = document.getElementById('movieModal');
+        const modalClose = document.getElementById('modalClose');
+        let currentMovieData = null;
+
+        function openMovieModal(movieId) {
+            fetch(`/movie/${movieId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        displayMovieModal(data.movie, data.image_base);
+                    } else {
+                        showToast('Could not load movie details', 'error');
+                    }
+                })
+                .catch(error => {
+                    showToast('Error loading movie details', 'error');
+                    console.error('Error:', error);
+                });
+        }
+
+        function displayMovieModal(movie, imageBase) {
+            currentMovieData = movie;
+
+            // Set backdrop
+            const backdrop = document.getElementById('modalBackdrop');
+            if (movie.backdrop_path) {
+                backdrop.style.backgroundImage = `url('${imageBase}${movie.backdrop_path}')`;
+            } else if (movie.poster_path) {
+                backdrop.style.backgroundImage = `url('${imageBase}${movie.poster_path}')`;
+            }
+
+            // Set basic info
+            document.getElementById('modalTitle').textContent = movie.title;
+            document.getElementById('modalTagline').textContent = movie.tagline || '';
+            document.getElementById('modalRating').innerHTML = `⭐ ${movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}`;
+            document.getElementById('modalYear').textContent = movie.release_date ? movie.release_date.substring(0, 4) : 'N/A';
+            document.getElementById('modalRuntime').textContent = movie.runtime ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m` : '';
+            document.getElementById('modalOverview').textContent = movie.overview || 'No overview available.';
+
+            // Set genres
+            const genresEl = document.getElementById('modalGenres');
+            genresEl.innerHTML = movie.genres ? movie.genres.map(g => `<span class="genre-tag">${g}</span>`).join('') : '';
+
+            // Set cast
+            const castEl = document.getElementById('modalCast');
+            if (movie.cast && movie.cast.length > 0) {
+                castEl.innerHTML = movie.cast.map(c => `
+                    <div class="cast-item">
+                        <div class="cast-photo">
+                            ${c.profile_path
+                        ? `<img src="${imageBase}${c.profile_path}" alt="${c.name}">`
+                        : '<div class="no-photo">👤</div>'
+                    }
+                        </div>
+                        <p class="cast-name">${c.name}</p>
+                        <p class="cast-character">${c.character}</p>
+                    </div>
+                `).join('');
+            } else {
+                castEl.innerHTML = '<p class="no-data">No cast information available</p>';
+            }
+
+            // Set crew
+            const crewEl = document.getElementById('modalCrew');
+            let crewHtml = '';
+            if (movie.directors && movie.directors.length > 0) {
+                crewHtml += `<p><strong>Director:</strong> ${movie.directors.map(d => d.name).join(', ')}</p>`;
+            }
+            if (movie.writers && movie.writers.length > 0) {
+                crewHtml += `<p><strong>Writers:</strong> ${movie.writers.map(w => w.name).join(', ')}</p>`;
+            }
+            crewEl.innerHTML = crewHtml || '<p class="no-data">No crew information available</p>';
+
+            // Update add button
+            const addBtn = document.getElementById('modalAddBtn');
+            addBtn.onclick = () => addToWatchlist(movie.id, movie.title, movie.poster_path);
+
+            // Show modal
+            movieModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        movieModal.addEventListener('click', function (e) {
+            if (e.target === movieModal) {
+                closeModal();
+            }
+        });
+
+        function closeModal() {
+            movieModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && movieModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // ===== NAVBAR SCROLL EFFECT =====
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>

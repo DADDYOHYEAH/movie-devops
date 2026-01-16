@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search | DevOps Flix</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar scrolled">
+        <div class="nav-left">
+            <a href="/" class="logo">DEVOPS<span>FLIX</span></a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="#trending">Trending</a></li>
+                <li><a href="#top-rated">Top Rated</a></li>
+                <li><a href="#watchlist">My List</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <a href="/search" class="search-icon-btn active">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path
+                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Search Page Content -->
+    <div class="search-page">
+        <div class="search-page-header">
+            <h1 class="search-page-title">🎬 Discover Your Next Favorite 🎬</h1>
+            <p class="search-page-subtitle">Search through thousands of movies, TV shows, and anime series</p>
+        </div>
+
+        <div class="search-page-input-wrapper">
+            <div class="search-page-input-container">
+                <svg class="search-input-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path
+                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                </svg>
+                <input type="text" id="searchInput" placeholder="Type here to search..." autocomplete="off" autofocus>
+            </div>
+        </div>
+
+        <div class="search-page-results">
+            <div id="searchResults">
+                <!-- Trending Today Section (shown by default) -->
+                <div class="search-section">
+                    <div class="search-section-header">
+                        <h2 class="search-section-title">📍 Trending Today</h2>
+                        <span class="search-section-count">{{ trending|length }} results found</span>
+                    </div>
+                    <div class="search-results-grid">
+                        {% for movie in trending %}
+                        <div class="search-result-card" onclick="window.location.href='/?movie={{ movie.id }}'">
+                            <div class="search-result-card-poster">
+                                {% if movie.poster_path %}
+                                <img src="{{ image_base }}{{ movie.poster_path }}" alt="{{ movie.title }}"
+                                    loading="lazy">
+                                {% else %}
+                                <div class="no-poster">No Image</div>
+                                {% endif %}
+                            </div>
+                            <h4 class="search-result-card-title">{{ movie.title }}</h4>
+                            <div class="search-result-card-meta">
+                                <span>⭐ {{ "%.1f"|format(movie.vote_average) }}</span>
+                                <span>{{ movie.release_date[:4] if movie.release_date else 'N/A' }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const IMAGE_BASE = '{{ image_base }}';
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        let searchTimeout = null;
+
+        // Search as you type - NO DEBOUNCE for instant results
+        searchInput.addEventListener('input', function () {
+            const query = this.value.trim();
+
+            if (searchTimeout) {
+                clearTimeout(searchTimeout);
+            }
+
+            if (!query) {
+                // Show trending again if search is cleared
+                location.reload();
+                return;
+            }
+
+            // Very minimal debounce (50ms) for instant feel
+            searchTimeout = setTimeout(() => {
+                performSearch(query);
+            }, 50);
+        });
+
+        function performSearch(query) {
+            fetch(`/api/search?q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    displaySearchResults(data.results, data.image_base, query);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function displaySearchResults(results, imageBase, query) {
+            if (results.length === 0) {
+                searchResults.innerHTML = `
+                    <div class="no-results">
+                        <p>No movies found for "${query}"</p>
+                        <span>Try a different search term</span>
+                    </div>
+                `;
+            } else {
+                let html = `
+                    <div class="search-section">
+                        <div class="search-section-header">
+                            <h2 class="search-section-title">🔍 Search Results for "${query}"</h2>
+                            <span class="search-section-count">${results.length} result${results.length !== 1 ? 's' : ''} found</span>
+                        </div>
+                        <div class="search-results-grid">
+                `;
+
+                results.forEach(movie => {
+                    const posterUrl = movie.poster_path ? `${imageBase}${movie.poster_path}` : '';
+                    html += `
+                        <div class="search-result-card" onclick="window.location.href='/?movie=${movie.id}'">
+                            <div class="search-result-card-poster">
+                                ${posterUrl
+                            ? `<img src="${posterUrl}" alt="${movie.title}" loading="lazy">`
+                            : '<div class="no-poster">No Image</div>'
+                        }
+                            </div>
+                            <h4 class="search-result-card-title">${movie.title}</h4>
+                            <div class="search-result-card-meta">
+                                <span>⭐ ${movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}</span>
+                                <span>${movie.release_date ? movie.release_date.substring(0, 4) : 'N/A'}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += '</div></div>';
+                searchResults.innerHTML = html;
+            }
+        }
+    </script>
+</body>
+
+</html>
