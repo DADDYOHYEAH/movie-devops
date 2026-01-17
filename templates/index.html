@@ -326,7 +326,7 @@
 
         <!-- Trending Today Section -->
         <section id="trending" class="movie-section">
-            <h2 class="section-title">🔥 Trending Today</h2>
+            <h2 class="section-title">Trending Today</h2>
             <div class="carousel-container">
                 <div class="movie-carousel" id="trending-carousel">
                     {% for movie in trending %}
@@ -338,23 +338,12 @@
                             <div class="no-poster">No Image</div>
                             {% endif %}
                             <div class="movie-overlay">
-                                <div class="overlay-content">
-                                    <h4 class="overlay-title">{{ movie.title }}</h4>
-                                    <div class="overlay-meta">
-                                        <span class="overlay-rating">⭐ {{ "%.1f"|format(movie.vote_average) }}</span>
-                                        <span class="overlay-year">{{ movie.release_date[:4] if movie.release_date else
-                                            'N/A' }}</span>
-                                    </div>
-                                    <p class="overlay-overview">{{ movie.overview[:100] }}{% if movie.overview|length >
-                                        100 %}...{% endif %}</p>
-                                    <div class="overlay-buttons">
-                                        <button class="overlay-btn play-btn"
-                                            onclick="event.stopPropagation();">▶</button>
-                                        <button class="overlay-btn add-btn"
-                                            onclick="event.stopPropagation(); addToWatchlist({{ movie.id }}, '{{ movie.title|e }}', '{{ movie.poster_path }}')">+</button>
-                                        <button class="overlay-btn info-btn"
-                                            onclick="event.stopPropagation(); openMovieModal({{ movie.id }});">ⓘ</button>
-                                    </div>
+                                <button class="overlay-add-btn"
+                                    onclick="event.stopPropagation(); addToWatchlist({{ movie.id }}, '{{ movie.title|e }}', '{{ movie.poster_path }}')"
+                                    title="Add to Watchlist">+</button>
+                                <div class="overlay-rating-badge">
+                                    <span class="rating-star">★</span>
+                                    <span class="rating-value">{{ "%.1f"|format(movie.vote_average) }}/10</span>
                                 </div>
                             </div>
                         </div>
@@ -367,7 +356,7 @@
 
         <!-- Top Rated Section -->
         <section id="top-rated" class="movie-section">
-            <h2 class="section-title">⭐ Top Rated</h2>
+            <h2 class="section-title">Top Rated</h2>
             <div class="carousel-container">
                 <div class="movie-carousel" id="toprated-carousel">
                     {% for movie in top_rated %}
@@ -379,23 +368,12 @@
                             <div class="no-poster">No Image</div>
                             {% endif %}
                             <div class="movie-overlay">
-                                <div class="overlay-content">
-                                    <h4 class="overlay-title">{{ movie.title }}</h4>
-                                    <div class="overlay-meta">
-                                        <span class="overlay-rating">⭐ {{ "%.1f"|format(movie.vote_average) }}</span>
-                                        <span class="overlay-year">{{ movie.release_date[:4] if movie.release_date else
-                                            'N/A' }}</span>
-                                    </div>
-                                    <p class="overlay-overview">{{ movie.overview[:100] }}{% if movie.overview|length >
-                                        100 %}...{% endif %}</p>
-                                    <div class="overlay-buttons">
-                                        <button class="overlay-btn play-btn"
-                                            onclick="event.stopPropagation();">▶</button>
-                                        <button class="overlay-btn add-btn"
-                                            onclick="event.stopPropagation(); addToWatchlist({{ movie.id }}, '{{ movie.title|e }}', '{{ movie.poster_path }}')">+</button>
-                                        <button class="overlay-btn info-btn"
-                                            onclick="event.stopPropagation(); openMovieModal({{ movie.id }});">ⓘ</button>
-                                    </div>
+                                <button class="overlay-add-btn"
+                                    onclick="event.stopPropagation(); addToWatchlist({{ movie.id }}, '{{ movie.title|e }}', '{{ movie.poster_path }}')"
+                                    title="Add to Watchlist">+</button>
+                                <div class="overlay-rating-badge">
+                                    <span class="rating-star">★</span>
+                                    <span class="rating-value">{{ "%.1f"|format(movie.vote_average) }}/10</span>
                                 </div>
                             </div>
                         </div>
@@ -655,19 +633,8 @@
         let currentMovieData = null;
 
         function openMovieModal(movieId) {
-            fetch(`/movie/${movieId}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        displayMovieModal(data.movie, data.image_base);
-                    } else {
-                        showToast('Could not load movie details', 'error');
-                    }
-                })
-                .catch(error => {
-                    showToast('Error loading movie details', 'error');
-                    console.error('Error:', error);
-                });
+            // Navigate to the full detail page
+            window.location.href = `/movie/${movieId}`;
         }
 
         function displayMovieModal(movie, imageBase) {

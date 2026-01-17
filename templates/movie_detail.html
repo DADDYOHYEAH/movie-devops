@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }} | DevOps Flix</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="detail-page-body">
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="detail-back-btn" aria-label="Go Back">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+        </svg>
+    </a>
+
+    <!-- Mute/Unmute Button -->
+    <button class="detail-mute-btn" id="muteBtn" aria-label="Toggle Mute" onclick="toggleMute()">
+        <svg id="muteIcon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <!-- Unmuted icon by default -->
+            <path
+                d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+        </svg>
+    </button>
+
+    <!-- Movie Detail Content -->
+    <div class="detail-container">
+        <!-- YouTube Trailer Player or Backdrop -->
+        {% if movie.trailer_key %}
+        <div id="trailerWrapper">
+            <div id="trailerPlayer"></div>
+            <!-- Gradient overlays -->
+            <div class="trailer-gradient-left"></div>
+            <div class="trailer-gradient-bottom"></div>
+        </div>
+        {% else %}
+        <!-- Fallback to backdrop image if no trailer -->
+        <div class="detail-backdrop"
+            style="background-image: url('{{ image_base }}{{ movie.backdrop_path or movie.poster_path }}');"></div>
+        {% endif %}
+
+        <!-- Content Overlay -->
+        <div class="detail-content">
+            <!-- Title -->
+            <h1 class="detail-title">{{ movie.title }}</h1>
+
+            <!-- Meta Info -->
+            <div class="detail-meta">
+                {% if movie.release_date %}
+                <span class="detail-year">📅 {{ movie.release_date[:4] }}</span>
+                {% endif %}
+                <span class="detail-rating">⭐ {{ "%.1f"|format(movie.vote_average) if movie.vote_average else 'N/A'
+                    }}</span>
+                {% if movie.runtime %}
+                <span class="detail-runtime">🕐 {{ (movie.runtime // 60) }}h {{ movie.runtime % 60 }}m</span>
+                {% endif %}
+                {% if movie.number_of_seasons %}
+                <span class="detail-seasons">📺 {{ movie.number_of_seasons }} Season{{ 's' if movie.number_of_seasons >
+                    1 else '' }}</span>
+                {% endif %}
+            </div>
+
+            <!-- Genres -->
+            {% if movie.genres %}
+            <div class="detail-genres">
+                {% for genre in movie.genres %}
+                <span class="detail-genre-tag">{{ genre }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Overview -->
+            <p class="detail-overview">{{ movie.overview }}</p>
+
+            <!-- Action Buttons -->
+            <div class="detail-actions">
+                {% if movie.media_type == 'tv' or movie.number_of_seasons %}
+                <a href="/watch/tv/{{ movie.id }}/1/1" class="detail-btn detail-btn-play">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                    Play
+                </a>
+                {% else %}
+                <a href="/watch/movie/{{ movie.id }}" class="detail-btn detail-btn-play">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                    Play
+                </a>
+                {% endif %}
+                <button class="detail-btn detail-btn-add" onclick="addToWatchlistFromDetail()">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                    </svg>
+                </button>
+                {% if movie.media_type == 'tv' or movie.number_of_seasons %}
+                <button class="detail-btn detail-btn-secondary">Episodes</button>
+                {% endif %}
+                <button class="detail-btn detail-btn-secondary">Similars</button>
+            </div>
+
+            <!-- Cast Section -->
+            {% if movie.cast %}
+            <div class="detail-cast-section">
+                <h3>Cast</h3>
+                <div class="detail-cast-grid">
+                    {% for actor in movie.cast[:8] %}
+                    <div class="detail-cast-item">
+                        <div class="detail-cast-photo">
+                            {% if actor.profile_path %}
+                            <img src="{{ image_base }}{{ actor.profile_path }}" alt="{{ actor.name }}">
+                            {% else %}
+                            <div class="detail-cast-no-photo">👤</div>
+                            {% endif %}
+                        </div>
+                        <p class="detail-cast-name">{{ actor.name }}</p>
+                        <p class="detail-cast-character">{{ actor.character }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Crew Section -->
+            {% if movie.directors or movie.writers %}
+            <div class="detail-crew-section">
+                {% if movie.directors %}
+                <p><strong>{{ 'Created by' if movie.media_type == 'tv' else 'Director' }}:</strong>
+                    {% for d in movie.directors %}{{ d.name }}{% if not loop.last %}, {% endif %}{% endfor %}
+                </p>
+                {% endif %}
+                {% if movie.writers %}
+                <p><strong>Writers:</strong>
+                    {% for w in movie.writers %}{{ w.name }}{% if not loop.last %}, {% endif %}{% endfor %}
+                </p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+        const MOVIE_DATA = {
+            id: {{ movie.id }},
+        title: "{{ movie.title | e }}",
+            poster_path: "{{ movie.poster_path }}"
+        };
+
+        {% if movie.trailer_key %}
+        const TRAILER_KEY = "{{ movie.trailer_key }}";
+        {% else %}
+        const TRAILER_KEY = null;
+        {% endif %}
+
+        let player;
+        let isMuted = false;
+
+        // YouTube IFrame API ready callback
+        function onYouTubeIframeAPIReady() {
+            if (TRAILER_KEY) {
+                player = new YT.Player('trailerPlayer', {
+                    videoId: TRAILER_KEY,
+                    playerVars: {
+                        autoplay: 1,
+                        controls: 0,
+                        showinfo: 0,
+                        modestbranding: 1,
+                        loop: 1,
+                        fs: 0,
+                        cc_load_policy: 0,
+                        iv_load_policy: 3,
+                        autohide: 1,
+                        mute: 0, // Start with sound ON
+                        playlist: TRAILER_KEY // Required for loop
+                    },
+                    events: {
+                        'onReady': onPlayerReady
+                    }
+                });
+            }
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+            event.target.unMute(); // Ensure sound is on
+            event.target.setVolume(100);
+        }
+
+        function toggleMute() {
+            if (!player) return;
+
+            const muteIcon = document.getElementById('muteIcon');
+
+            if (isMuted) {
+                // Unmute
+                player.unMute();
+                isMuted = false;
+                // Show unmuted icon
+                muteIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+            } else {
+                // Mute
+                player.mute();
+                isMuted = true;
+                // Show muted icon
+                muteIcon.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+            }
+        }
+
+        function addToWatchlistFromDetail() {
+            fetch('/watchlist/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: MOVIE_DATA.id,
+                    title: MOVIE_DATA.title,
+                    poster_path: MOVIE_DATA.poster_path
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showToast(`"${MOVIE_DATA.title}" added to watchlist!`, 'success');
+                    } else {
+                        showToast(data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    showToast('Error adding to watchlist', 'error');
+                    console.error('Error:', error);
+                });
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

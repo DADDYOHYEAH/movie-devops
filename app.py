@@ -42,23 +42,82 @@ def fetch_top_rated_movies():
         return []
 
 
-def search_movies(query):
-    """Search movies by query from TMDB API"""
-    url = f"{TMDB_BASE_URL}/search/movie"
+def search_multi(query):
+    """Search movies and TV series by query from TMDB API (multi-search)"""
+    url = f"{TMDB_BASE_URL}/search/multi"
     params = {"api_key": TMDB_API_KEY, "query": query}
     try:
         response = requests.get(url, params=params, timeout=10)
         response.raise_for_status()
-        return response.json().get("results", [])
+        results = response.json().get("results", [])
+        # Filter to only movies and TV series, exclude people
+        filtered = [r for r in results if r.get("media_type") in ("movie", "tv")]
+        return filtered
     except requests.RequestException:
         return []
+
+
+def fetch_tv_details(tv_id):
+    """Fetch detailed TV series info including cast and crew"""
+    url = f"{TMDB_BASE_URL}/tv/{tv_id}"
+    params = {"api_key": TMDB_API_KEY, "append_to_response": "credits,videos"}
+    try:
+        response = requests.get(url, params=params, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+        
+        # Extract relevant info
+        tv_details = {
+            "id": data.get("id"),
+            "title": data.get("name"),
+            "overview": data.get("overview"),
+            "poster_path": data.get("poster_path"),
+            "backdrop_path": data.get("backdrop_path"),
+            "release_date": data.get("first_air_date"),
+            "runtime": data.get("episode_run_time", [None])[0] if data.get("episode_run_time") else None,
+            "vote_average": data.get("vote_average"),
+            "vote_count": data.get("vote_count"),
+            "genres": [g["name"] for g in data.get("genres", [])],
+            "tagline": data.get("tagline"),
+            "status": data.get("status"),
+            "media_type": "tv",
+            "number_of_seasons": data.get("number_of_seasons"),
+            "number_of_episodes": data.get("number_of_episodes"),
+        }
+        
+        # Get trailer video
+        videos = data.get("videos", {}).get("results", [])
+        trailer = None
+        for video in videos:
+            if video.get("type") == "Trailer" and video.get("site") == "YouTube":
+                trailer = video.get("key")
+                break
+        tv_details["trailer_key"] = trailer
+        
+        # Get cast (top 10)
+        credits = data.get("credits", {})
+        cast = credits.get("cast", [])[:10]
+        tv_details["cast"] = [{
+            "name": c.get("name"),
+            "character": c.get("character"),
+            "profile_path": c.get("profile_path")
+        } for c in cast]
+        
+        # Get crew (creators)
+        creators = data.get("created_by", [])
+        tv_details["directors"] = [{"name": c.get("name")} for c in creators]
+        tv_details["writers"] = []
+        
+        return tv_details
+    except requests.RequestException:
+        return None
 
 
 def fetch_movie_details(movie_id):
     """Fetch detailed movie info including cast and crew"""
     # Get movie details
     url = f"{TMDB_BASE_URL}/movie/{movie_id}"
-    params = {"api_key": TMDB_API_KEY, "append_to_response": "credits"}
+    params = {"api_key": TMDB_API_KEY, "append_to_response": "credits,videos"}
     try:
         response = requests.get(url, params=params, timeout=10)
         response.raise_for_status()
@@ -81,6 +140,15 @@ def fetch_movie_details(movie_id):
             "budget": data.get("budget"),
             "revenue": data.get("revenue"),
         }
+        
+        # Get trailer video
+        videos = data.get("videos", {}).get("results", [])
+        trailer = None
+        for video in videos:
+            if video.get("type") == "Trailer" and video.get("site") == "YouTube":
+                trailer = video.get("key")
+                break
+        movie_details["trailer_key"] = trailer
         
         # Get cast (top 10)
         credits = data.get("credits", {})
@@ -134,22 +202,88 @@ def search_page():
 
 @app.route("/api/search")
 def search():
-    """Search endpoint for querying movies"""
+    """Search endpoint for querying movies and TV series"""
     query = request.args.get("q", "")
     if not query:
         return jsonify({"results": []})
     
-    results = search_movies(query)
+    results = search_multi(query)
     return jsonify({"results": results, "image_base": TMDB_IMAGE_BASE})
 
 
 @app.route("/movie/<int:movie_id>")
 def get_movie_details(movie_id):
-    """Get detailed movie information including cast and crew"""
+    """Render full movie detail page"""
+    details = fetch_movie_details(movie_id)
+    if details:
+        return render_template(
+            "movie_detail.html",
+            movie=details,
+            image_base=TMDB_IMAGE_BASE
+        )
+    return render_template("404.html"), 404
+
+
+@app.route("/tv/<int:tv_id>")
+def get_tv_details(tv_id):
+    """Render full TV series detail page"""
+    details = fetch_tv_details(tv_id)
+    if details:
+        return render_template(
+            "movie_detail.html",
+            movie=details,
+            image_base=TMDB_IMAGE_BASE
+        )
+    return render_template("404.html"), 404
+
+
+@app.route("/watch/movie/<int:movie_id>")
+def watch_movie(movie_id):
+    """Render movie player page with VidKing embed"""
+    details = fetch_movie_details(movie_id)
+    if details:
+        return render_template(
+            "player.html",
+            title=details.get("title", "Movie"),
+            tmdb_id=movie_id,
+            media_type="movie"
+        )
+    return render_template("404.html"), 404
+
+
+@app.route("/watch/tv/<int:tv_id>/<int:season>/<int:episode>")
+def watch_tv(tv_id, season, episode):
+    """Render TV player page with VidKing embed"""
+    details = fetch_tv_details(tv_id)
+    if details:
+        return render_template(
+            "player.html",
+            title=details.get("title", "TV Series"),
+            tmdb_id=tv_id,
+            media_type="tv",
+            season=season,
+            episode=episode,
+            total_seasons=details.get("number_of_seasons", 1)
+        )
+    return render_template("404.html"), 404
+
+
+@app.route("/api/movie/<int:movie_id>")
+def get_movie_details_api(movie_id):
+    """API endpoint for movie details (JSON)"""
     details = fetch_movie_details(movie_id)
     if details:
         return jsonify({"success": True, "movie": details, "image_base": TMDB_IMAGE_BASE})
     return jsonify({"success": False, "message": "Movie not found"}), 404
+
+
+@app.route("/api/tv/<int:tv_id>")
+def get_tv_details_api(tv_id):
+    """API endpoint for TV series details (JSON)"""
+    details = fetch_tv_details(tv_id)
+    if details:
+        return jsonify({"success": True, "movie": details, "image_base": TMDB_IMAGE_BASE})
+    return jsonify({"success": False, "message": "TV series not found"}), 404
 
 
 @app.route("/watchlist/add", methods=["POST"])

@@ -120,7 +120,7 @@
             if (results.length === 0) {
                 searchResults.innerHTML = `
                     <div class="no-results">
-                        <p>No movies found for "${query}"</p>
+                        <p>No results found for "${query}"</p>
                         <span>Try a different search term</span>
                     </div>
                 `;
@@ -134,20 +134,27 @@
                         <div class="search-results-grid">
                 `;
 
-                results.forEach(movie => {
-                    const posterUrl = movie.poster_path ? `${imageBase}${movie.poster_path}` : '';
+                results.forEach(item => {
+                    const posterUrl = item.poster_path ? `${imageBase}${item.poster_path}` : '';
+                    // Handle both movies (title) and TV series (name)
+                    const title = item.title || item.name;
+                    // Handle both movies (release_date) and TV series (first_air_date)
+                    const releaseDate = item.release_date || item.first_air_date;
+                    const mediaType = item.media_type || 'movie';
+
                     html += `
-                        <div class="search-result-card" onclick="window.location.href='/?movie=${movie.id}'">
+                        <div class="search-result-card" onclick="openMovieModal(${item.id}, '${mediaType}')">
                             <div class="search-result-card-poster">
                                 ${posterUrl
-                            ? `<img src="${posterUrl}" alt="${movie.title}" loading="lazy">`
+                            ? `<img src="${posterUrl}" alt="${title}" loading="lazy">`
                             : '<div class="no-poster">No Image</div>'
                         }
                             </div>
-                            <h4 class="search-result-card-title">${movie.title}</h4>
+                            <h4 class="search-result-card-title">${title}</h4>
                             <div class="search-result-card-meta">
-                                <span>⭐ ${movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}</span>
-                                <span>${movie.release_date ? movie.release_date.substring(0, 4) : 'N/A'}</span>
+                                <span>⭐ ${item.vote_average ? item.vote_average.toFixed(1) : 'N/A'}</span>
+                                <span>${releaseDate ? releaseDate.substring(0, 4) : 'N/A'}</span>
+                                <span class="media-type-badge">${mediaType === 'tv' ? 'TV' : 'Movie'}</span>
                             </div>
                         </div>
                     `;
@@ -156,6 +163,12 @@
                 html += '</div></div>';
                 searchResults.innerHTML = html;
             }
+        }
+
+        function openMovieModal(id, mediaType) {
+            // Navigate to the full detail page
+            const url = mediaType === 'tv' ? `/tv/${id}` : `/movie/${id}`;
+            window.location.href = url;
         }
     </script>
 </body>
